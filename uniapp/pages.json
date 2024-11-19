@@ -1,0 +1,207 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "汕大导航"
+			}
+		}
+	    ,{
+            "path" : "pages/introduction/introduction",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "校区简介",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/want/want",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "选择路线",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/result/result",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "查询结果",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/usr/usr",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/Ewant/Ewant",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "选择路线",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/Eresult/Eresult",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "查询结果",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/chat/chat",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "校园论坛",
+                "enablePullDownRefresh": true,
+                "onReachBottomDistance": 150
+            }
+            
+        }
+    ],
+	"subPackages": [
+		{
+			"root": "subpkg",
+			"pages": [
+				
+			{
+                    "path" : "mytalk/mytalk",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "我的留言",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "myReply/myReply",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "我的回复",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "talk/talk",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "留言",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "suchtalk/suchtalk",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "详情",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "myMessage/myMessage",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "账户设置",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "ChangeUsername/ChangeUsername",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "用户名修改",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "changeSex/changeSex",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "性别修改",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "changeIntroduction/changeIntroduction",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "简介修改",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "search/search",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "搜索",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "searchList/searchList",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "搜索结果",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "最优路径查询系统",
+		"navigationBarBackgroundColor": "#ADD8E6",
+		"backgroundColor": "#ADD8E6"
+	},
+	"tabBar": {
+		"selectedColor": "#ADD8E6", 
+		"list": [{
+				"text": "首页",
+				"pagePath": "pages/index/index",
+				"iconPath": "static/shouye1.png",
+				"selectedIconPath": "static/shouye2.png"
+			},
+			{
+				"text": "校区简介",
+				"pagePath": "pages/introduction/introduction",
+				"iconPath": "static/地图1.png",
+				"selectedIconPath": "static/地图2.png"
+			},
+			{
+				"text": "论坛",
+				"pagePath": "pages/chat/chat",
+				"iconPath": "static/论坛1.png",
+				"selectedIconPath": "static/论坛2.png"
+			},
+			{
+				"text": "我的",
+				"pagePath": "pages/usr/usr",
+				"iconPath": "static/我的1.png",
+				"selectedIconPath": "static/我的2.png"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}

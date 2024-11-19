@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "校园论坛",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 150,
+  "usingComponents": {
+    "my-search": "/uni_modules/my-search/components/my-search/my-search",
+    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons"
+  }
+}

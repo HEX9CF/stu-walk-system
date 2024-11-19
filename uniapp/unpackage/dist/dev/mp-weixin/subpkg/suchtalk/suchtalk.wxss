@@ -1,0 +1,207 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.suchChatBox {
+  display: flex;
+  flex-direction: column;
+  padding: 15rpx;
+  margin-left: 10rpx;
+  box-sizing: border-box;
+}
+.suchChatBox .head {
+  display: flex;
+  align-items: center;
+}
+.suchChatBox .head .name_date {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15rpx;
+}
+.suchChatBox .head .name_date .head-name {
+  font-size: 14px;
+}
+.suchChatBox .head .name_date .head-date {
+  font-size: 10px;
+  color: gray;
+  margin-top: 15rpx;
+}
+.suchChatBox .head .head-image {
+  border-radius: 50px;
+  width: 100rpx;
+  height: 100rpx;
+  border: solid 2px #f7f7f7;
+  box-sizing: border-box;
+}
+.suchChatBox .content {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 15px;
+}
+.suchChatBox .icon {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 30rpx;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+}
+.suchChatBox .icon .icon-text {
+  font-size: 13px;
+  color: gray;
+}
+.suchChatBox .icon .icon-image {
+  height: 45rpx;
+  width: 45rpx;
+}
+.name_sex {
+  display: flex;
+}
+.name_sex .head-name {
+  font-size: 14px;
+}
+.name_sex .pic {
+  margin-left: 5rpx;
+}
+.suchChatListBox {
+  display: flex;
+  flex-direction: column;
+  padding: 15rpx;
+  margin-left: 10rpx;
+  padding-bottom: 360rpx;
+}
+.suchChatListBox .head {
+  display: flex;
+  align-items: center;
+  margin-top: 25rpx;
+}
+.suchChatListBox .head .name_date {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15rpx;
+}
+.suchChatListBox .head .name_date .head-date {
+  font-size: 10px;
+  color: gray;
+  margin-top: 15rpx;
+}
+.suchChatListBox .head .head-image {
+  border-radius: 50px;
+  width: 80rpx;
+  height: 80rpx;
+  border: solid 2px #f7f7f7;
+  box-sizing: border-box;
+}
+.suchChatListBox .content {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 15px;
+  padding-left: 94rpx;
+}
+.speak {
+  position: fixed;
+  border-top: solid 1px #f7f7f7;
+  bottom: 0;
+  z-index: 99;
+  width: 100%;
+  padding: 20rpx;
+  background-color: white;
+  height: 120rpx;
+  box-sizing: border-box;
+  display: flex;
+}
+.speak .speak-textarea {
+  background-color: #f7f7f7;
+  width: 100%;
+  padding: 20rpx;
+  border-radius: 16px;
+}
+.speak .speak-icon {
+  width: 80rpx;
+  margin-left: 10rpx;
+}
+.spoke {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.spoke .shurukuang {
+  width: 100%;
+  padding: 10rpx;
+  display: flex;
+  flex-direction: column;
+}
+.spoke .shurukuang .shurukuang-textarea {
+  width: 92%;
+  height: 200rpx;
+  background-color: #f0f0f0;
+  border-radius: 10rpx;
+  padding: 20rpx;
+}
+.spoke .zishu {
+  text-align: right;
+  align-items: center;
+  display: flex;
+  padding: 20rpx;
+  padding-top: 20rpx;
+}
+.spoke .zishu .zishu-text {
+  font-size: 24rpx;
+  color: #646464;
+}
+.spoke .zishu .zishu-button {
+  border-radius: 40rpx;
+  background-color: #ADD8E6;
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  position: absolute;
+  right: 15rpx;
+}
+.spoke .zishu .zishu-button .zishu-button-text {
+  color: white;
+  font-size: 15px;
+  font-family: 黑体, STSong, serif;
+}
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 200rpx;
+}
+.empty-cart .empty-img {
+  width: 300rpx;
+  height: 300rpx;
+}
+.empty-cart .tip-text {
+  font-size: 12px;
+  color: gray;
+  margin-top: 15px;
+}
+
