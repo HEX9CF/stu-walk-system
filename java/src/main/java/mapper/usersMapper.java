@@ -8,7 +8,7 @@ import pojo.user;
 /**
  * User mapper interface for database operations.
  */
-public interface UserMapper {
+public interface usersMapper {
     /**
      * Searches for a user by username.
      *
