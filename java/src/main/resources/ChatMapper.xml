@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ChatMapper">
+    <insert id="addChat">
+        insert into chatList(user_id, user_name, content, date, sex) values(#{user_id}, #{user_name}, #{content}, #{date}, #{sex})
+    </insert>
+    <update id="updateCount">
+        update chatList set count = #{count} where id = #{id}
+    </update>
+    <update id="changeUsername">
+        update chatList set user_name = #{afterUser_name} where user_name = #{beforeUser_name}
+    </update>
+    <update id="changeSex">
+        update chatList set sex = #{sex} where user_id = #{user_id}
+    </update>
+    <select id="searchLike" resultType="pojo.Chat">
+        <bind name="data" value="'%' + s + '%'"/>
+        select * from chatList where content like #{data}
+    </select>
+</mapper>
