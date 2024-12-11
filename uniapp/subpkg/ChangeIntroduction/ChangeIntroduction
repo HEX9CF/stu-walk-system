@@ -1,0 +1,142 @@
+<template>
+  <view>
+    <view class="shurukuang">
+      <textarea
+        class="shurukuang-textarea"
+        auto-focus="true"
+        maxlength="50"
+        auto-height
+        @input="inputContent"
+        :placeholder="user.introduction"
+      ></textarea>
+    </view>
+    <view class="zishu">
+      <text class="zishu-text">{{ start }}/50</text>
+      <view class="zishu-button" @click="confirm">
+        <text class="zishu-button-text">修改</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import { mapState, mapMutations } from 'vuex';
+import { $http } from '@escook/request-miniprogram';
+uni.$http = $http;
+$http.baseUrl = 'https://database.ccjy16.top';
+
+// 请求拦截器
+$http.beforeRequest = function (options) {
+  uni.showLoading({
+    title: '数据加载中...',
+  });
+};
+
+// 响应拦截器
+$http.afterRequest = function () {
+  uni.hideLoading();
+};
+
+export default {
+  components: {},
+  data() {
+    return {
+      start: 0,
+      content: '',
+      suchUser: {},
+    };
+  },
+  computed: {
+    ...mapState('m_user', ['user', 'token']),
+  },
+  onLoad() {
+    if (!this.token) {
+      uni.switchTab({
+        url: '/pages/mine/mine',
+      });
+    }
+  },
+  methods: {
+    ...mapMutations('m_user', ['changeIntroduction']),
+    handleInputContent(e) {
+      this.content = e.detail.value;
+      this.start = this.content.length;
+    },
+    async handleConfirm() {
+      if (this.content.length === 0) {
+        return uni.showToast({
+          title: '输入不能为空！',
+          duration: 1000,
+          icon: 'none',
+        });
+      }
+      const res = await $http.get(
+        `/changeIntroductionServlet?id=${this.user.id}&introduction=${this.content}`
+      );
+      if (res.statusCode !== 200) {
+        return uni.showToast({
+          title: '数据请求失败！',
+          duration: 1500,
+          icon: 'none',
+        });
+      } else {
+        this.changeIntroduction(this.content);
+        return uni.showToast({
+          title: '修改成功！',
+          duration: 1500,
+          icon: 'none',
+        });
+      }
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+.shurukuang {
+  top: 10rpx;
+  width: 100%;
+  padding: 10rpx;
+  display: flex;
+  flex-direction: column;
+
+  .shurukuang-textarea {
+    width: 92%;
+    height: 320rpx;
+    background-color: #f0f0f0;
+    border-radius: 10rpx;
+    padding: 20rpx;
+  }
+}
+
+.zishu {
+  text-align: right;
+  align-items: center;
+  display: flex;
+  padding: 20rpx;
+  padding-top: 20rpx;
+
+  .zishu-text {
+    font-size: 24rpx;
+    color: #646464;
+  }
+
+  .zishu-button {
+    border-radius: 40rpx;
+    background-color: #ADD8E6;
+    display: flex;
+    align-items: center;
+    padding: 20rpx;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+    position: absolute;
+    right: 15rpx;
+
+    .zishu-button-text {
+      color: white;
+      font-size: 15px;
+      font-family: 黑体, STSong, serif;
+    }
+  }
+}
+</style>
