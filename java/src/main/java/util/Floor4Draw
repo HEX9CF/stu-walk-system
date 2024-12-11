@@ -1,0 +1,45 @@
+package util;
+
+import pojo.Didian;
+
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Floor4Draw {
+    public static void test(int st, int ed, int randomNumber) {
+        pointAndDraw(E_Dijkstra.dijkstra(st, ed), randomNumber);
+    }
+
+    public static void pointAndDraw(List<Integer> list, int randomNumber) {
+        // 添加点
+        List<Point2D.Double> points = new ArrayList<>();
+        Floor4ReadSheet1 readSheet1 = new Floor4ReadSheet1();
+        List<Didian> didianList = readSheet1.read();
+
+        Didian[] didians = new Didian[98];
+        int i = 1;
+        for (Didian di : didianList) {
+            didians[i] = di;
+            i++;
+        }
+
+        for (Integer in : list) {
+            Double x = didians[in].getX();
+            Double y = didians[in].getY();
+            Point2D.Double aDouble = new Point2D.Double(x * 61, y * 61);
+            points.add(aDouble);
+        }
+
+        draw(points, randomNumber);
+    }
+
+    public static void draw(List<Point2D.Double> points, int randomNumber) {
+        System.setProperty("java.awt.headless", "true");
+
+        // 创建 CoordinatePanelWithBackground 对象并绘制图像
+        Floor4CoordinatePanelWithBackground panel = new Floor4CoordinatePanelWithBackground(points);
+        String stringPath = "D:\\IdeaProjects\\HTML\\redMove\\floor4_path" + randomNumber + ".png";
+        panel.drawToImage(stringPath);
+    }
+}
