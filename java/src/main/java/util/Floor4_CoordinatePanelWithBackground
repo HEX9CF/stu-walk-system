@@ -1,0 +1,138 @@
+package util;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Floor4CoordinatePanelWithBackground {
+    private final List<Point2D.Double> points;
+    private BufferedImage backgroundImage;
+    // 用于存储已经绘制过的线段
+    private Set<Line> drawnLines = new HashSet<>();
+
+    public Floor4CoordinatePanelWithBackground(List<Point2D.Double> points) {
+        this.points = points;
+
+        // 加载背景图
+        try {
+            backgroundImage = ImageIO.read(new File("D:\\IdeaProjects\\HTML\\redMove\\floor4.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void drawToImage(String outputPath) {
+        int width = 1154 + 50; // 图像宽度
+        int height = 806 + 50; // 图像高度
+        BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+        // 获取图像的绘图上下文
+        Graphics2D g2d = bufferedImage.createGraphics();
+
+        // 定义坐标轴的起始位置
+        int margin = 50; // 留出边距
+        int xAxisY = height - margin; // x轴的位置
+        int yAxisX = margin; // y轴的位置
+
+        // 绘制背景图
+        if (backgroundImage != null) {
+            int bgWidth = backgroundImage.getWidth();
+            int bgHeight = backgroundImage.getHeight();
+            // 确保背景图的左下角对齐到 (0, 0)
+            g2d.drawImage(backgroundImage, yAxisX, xAxisY - bgHeight, bgWidth, bgHeight, null);
+        }
+
+        // 绘制点
+        g2d.setColor(Color.RED);
+        int ii = 0;
+        for (Point2D.Double point : points) {
+            if (ii == 0) {
+                g2d.setColor(Color.yellow);
+            } else if (ii == points.size() - 1) {
+                g2d.setColor(Color.BLUE);
+            }
+            int x = (int) (yAxisX + point.x); // 将点的 x 坐标转换为面板坐标
+            int y = (int) (xAxisY - point.y); // 将点的 y 坐标转换为面板坐标
+            if (ii == 0 || ii == points.size() - 1) {
+                g2d.fillOval(x - 10, y - 10, 20, 20);
+            } else {
+                g2d.fillOval(x - 5, y - 5, 10, 10);
+            }
+            if (ii == 0 || ii == points.size() - 1) {
+                g2d.setColor(Color.red);
+            }
+            ii++;
+        }
+
+        // 绘制加粗的连线
+        g2d.setColor(Color.RED); // 可以选择不同的颜色来绘制连线
+        BasicStroke thickStroke = new BasicStroke(4.0f); // 设定线条宽度为 4.0f
+        g2d.setStroke(thickStroke);
+
+        for (int i = 1; i < points.size(); i++) {
+            Point2D.Double point1 = points.get(i - 1);
+            Point2D.Double point2 = points.get(i);
+            int x1 = (int) (yAxisX + point1.x);
+            int y1 = (int) (xAxisY - point1.y);
+            int x2 = (int) (yAxisX + point2.x);
+            int y2 = (int) (xAxisY - point2.y);
+
+            Line line = new Line(point1, point2);
+
+            // 检查是否已经绘制过该线段
+            if (!drawnLines.contains(line)) {
+                // 画线
+                g2d.drawLine(x1, y1, x2, y2);
+                // 将该线段标记为已绘制
+                drawnLines.add(line);
+            }
+        }
+
+        g2d.dispose();
+
+        // 保存 BufferedImage 到文件
+        try {
+            ImageIO.write(bufferedImage, "png", new File(outputPath));
+            System.out.println("图像已保存到: " + outputPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 表示线段的类
+    private static class Line {
+        private final Point2D.Double point1;
+        private final Point2D.Double point2;
+
+        public Line(Point2D.Double point1, Point2D.Double point2) {
+            // 保持点的顺序以确保无序性
+            if (point1.x < point2.x || (point1.x == point2.x && point1.y < point2.y)) {
+                this.point1 = point1;
+                this.point2 = point2;
+            } else {
+                this.point1 = point2;
+                this.point2 = point1;
+            }
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Line line = (Line) o;
+            return (point1.equals(line.point1) && point2.equals(line.point2)) ||
+                    (point1.equals(line.point2) && point2.equals(line.point1));
+        }
+
+        @Override
+        public int hashCode() {
+            return point1.hashCode() + point2.hashCode();
+        }
+    }
+}
