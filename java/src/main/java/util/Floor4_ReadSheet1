@@ -1,0 +1,62 @@
+package util;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import pojo.Didian;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * This class is responsible for reading data from an Excel sheet.
+ */
+public class Floor4ReadSheet1 {
+
+    /**
+     * Reads data from an Excel file and returns a list of Didian objects.
+     *
+     * @return A list of Didian objects.
+     */
+    public List<Didian> read() {
+        // String excelFilePath = "/www/wwwroot/database.ccjy16.top/data/floor4.xlsx";
+        String excelFilePath = "D:\\IdeaProjects\\HTML\\redMove\\floor4.xlsx";
+        List<Didian> dataArray = readExcelToArray(excelFilePath, "Sheet1");
+        return dataArray;
+    }
+
+    /**
+     * Reads data from an Excel file and converts it to a list of Didian objects.
+     *
+     * @param filePath   The path to the Excel file.
+     * @param sheetName The name of the sheet to read from.
+     * @return A list of Didian objects.
+     */
+    public static List<Didian> readExcelToArray(String filePath, String sheetName) {
+        List<Didian> didianList = new ArrayList<>();
+        try (FileInputStream fis = new FileInputStream(filePath);
+             Workbook workbook = new XSSFWorkbook(fis)) {
+
+            Sheet sheet = workbook.getSheet(sheetName);
+            int rowCount = sheet.getPhysicalNumberOfRows();
+            int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+
+            for (int i = 1; i <= rowCount; i++) {
+                Row row = sheet.getRow(i);
+                if (row != null) {
+                    Didian didian = new Didian();
+                    didian.setName(row.getCell(0).toString());
+                    didian.setX(row.getCell(1).getNumericCellValue());
+                    didian.setY(row.getCell(2).getNumericCellValue());
+                    didianList.add(didian);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return didianList;
+    }
+}
