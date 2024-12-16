@@ -1,0 +1,158 @@
+<template>
+  <view>
+    <view class="sex-box">
+      <view class="man" @click="onClick(1)">
+        <view class="box">
+          <image src="../../static/man.png" class="pic" mode="widthFix"></image>
+          <text class="text">男生</text>
+        </view>
+        <view v-if="manAc === 1">
+          <image src="../../static/true.png" class="pic"></image>
+        </view>
+      </view>
+      <view class="female" @click="onClick(0)">
+        <view class="box">
+          <image src="../../static/female.png" class="pic" mode="widthFix"></image>
+          <text class="text">女生</text>
+        </view>
+        <view v-if="femaleAc === 1">
+          <image src="../../static/true.png" class="pic"></image>
+        </view>
+      </view>
+      <!-- <view class="unknown" @click="onClick(-1)">
+        <view class="box">
+          <image src="../../static/unknown.png" class="pic" mode="widthFix"></image>
+          <text class="text">未知</text>
+        </view>
+        <view v-if="unknownAc === 1">
+          <image src="../../static/true.png" class="pic"></image>
+        </view>
+      </view> -->
+    </view>
+  </view>
+</template>
+
+<script>
+import { mapState, mapMutations } from 'vuex'
+import { $http } from '@escook/request-miniprogram'
+uni.$http = $http
+$http.baseUrl = 'https://database.ccjy16.top'
+
+// 请求拦截器
+$http.beforeRequest = function (options) {
+  uni.showLoading({
+    title: '数据加载中...',
+  })
+}
+
+// 响应拦截器
+$http.afterRequest = function () {
+  uni.hideLoading()
+}
+
+export default {
+  data() {
+    return {
+      manAc: 0,
+      femaleAc: 0,
+      unknownAc: 1
+    };
+  },
+  computed: {
+    ...mapState('m_user', ['user'])
+  },
+  onLoad() {
+    if (this.user.sex === 1) {
+      this.femaleAc = 0
+      this.unknownAc = 0
+      this.manAc = 1
+    } else if (this.user.sex === 0) {
+      this.manAc = 0
+      this.unknownAc = 0
+      this.femaleAc = 1
+    } else {
+      this.manAc = 0
+      this.femaleAc = 0
+      this.unknownAc = 1
+    }
+  },
+  methods: {
+    ...mapMutations('m_user', ['changeUserSex']),
+    onClick(index) {
+      if (index === 1) {
+        if (this.manAc === 1) return
+        this.femaleAc = 0
+        this.unknownAc = 0
+        this.manAc = 1
+        this.changeSex(index)
+      } else if (index === 0) {
+        if (this.femaleAc === 1) return
+        this.manAc = 0
+        this.unknownAc = 0
+        this.femaleAc = 1
+        this.changeSex(index)
+      } else {
+        if (this.unknownAc === 1) return
+        this.manAc = 0
+        this.femaleAc = 0
+        this.unknownAc = 1
+        this.changeSex(index)
+      }
+    },
+    async changeSex(sex) {
+      await $http.get('/userChangeSexServlet?id=' + this.user.id + '&sex=' + sex)
+      this.changeUserSex(sex)
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+.sex-box {
+  margin: 10rpx;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: white;
+  padding: 20rpx;
+  margin-top: 20rpx;
+
+  .pic {
+    width: 50rpx;
+    height: 50rpx;
+  }
+
+  .text {
+    margin-left: 15rpx;
+  }
+
+  .man {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx;
+    padding-top: 0rpx;
+  }
+
+  .female {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: solid 1px rgb(247, 247, 247);
+    border-bottom: solid 1px rgb(247, 247, 247);
+    box-sizing: border-box;
+    padding: 20rpx;
+  }
+
+  .unknown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx;
+    padding-bottom: 0rpx;
+  }
+}
+
+page {
+  background-color: rgb(247, 247, 247);
+}
+</style>
