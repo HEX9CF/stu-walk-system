@@ -1,0 +1,120 @@
+<template>
+  <view>
+    <view class="input-box">
+      <textarea class="input-box-textarea" auto-focus="true" maxlength="10" auto-height @input="inputContent" placeholder="修改你的用户名"/>
+    </view>
+    <view class="char-count">
+      <text class="char-count-text">{{ start }}/10</text>
+      <view class="char-count-button" @click="confirm">
+        <text class="char-count-button-text">修改</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import { mapState, mapMutations } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState('m_user', ['user', 'token'])
+  },
+  data() {
+    return {
+      start: 0,
+      content: '',
+      suchUser: {}
+    }
+  },
+  onLoad() {
+    if (!this.token) {
+      uni.switchTab({
+        url: '/pages/mine/mine'
+      })
+    }
+  },
+  methods: {
+    ...mapMutations('m_user', ['changeUsername']),
+    inputContent(e) {
+      this.content = e.detail.value
+      this.start = this.content.length
+    }, 
+    async confirm() {
+      if (this.content.length === 0) {
+        return uni.showToast({
+          title: '用户名不能为空！',
+          duration: 1000,
+          icon: 'none'
+        })
+      }
+      const res = await this.$http.get("/changeUsernameServlet?afterUsername=" + this.content + "&beforeUsername=" + this.user.username)
+      if (res.statusCode !== 200) {
+        return uni.showToast({
+          title: '数据请求失败！',
+          duration: 1500,
+          icon: 'none'
+        }) 
+      }
+      this.suchUser = res.data
+      if (Object.keys(this.suchUser).length === 0) {
+        this.changeUsername(this.content)
+        return uni.showToast({
+          title: '修改成功！',
+          duration: 1500,
+          icon: 'none'
+        })
+      } else {
+        return uni.showToast({
+          title: '注册失败，该用户名已被注册！',
+          duration: 1500,
+          icon: 'none'
+        })
+      }
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+.input-box {
+  top: 10rpx;
+  width: 100%;
+  padding: 10rpx;
+  display: flex;
+  flex-direction: column;
+  .input-box-textarea {
+    width: 92%;
+    height: 320rpx;
+    background-color: #f0f0f0;
+    border-radius: 10rpx;
+    padding: 20rpx;
+  }
+}
+.char-count {
+  text-align: right;
+  align-items: center;
+  display: flex;
+  padding: 20rpx;
+  padding-top: 20rpx;
+  .char-count-text {
+    font-size: 24rpx;
+    color: #646464;
+  }
+  .char-count-button {
+    border-radius: 40rpx;
+    background-color: #ADD8E6;
+    display: flex;
+    align-items: center;
+    padding: 20rpx;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+    position: absolute;
+    right: 15rpx;
+    .char-count-button-text {
+      color: white;
+      font-size: 15px;
+      font-family: 黑体, STSong, serif;
+    }
+  }
+}
+</style>
