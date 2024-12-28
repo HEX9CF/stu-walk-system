@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.usersMapper">
+
+    <update id="changeUsername">
+        update users set username = #{afterUsername} where username = #{beforeUsername}
+    </update>
+    <update id="changeSex">
+        update users set sex = #{sex} where id = #{id}
+    </update>
+    <update id="changeIntroduction">
+        update users set introduction = #{introduction} where id = #{id}
+    </update>
+</mapper>

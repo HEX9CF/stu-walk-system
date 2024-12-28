@@ -1,0 +1,199 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+page {
+  background-color: #F8F8FA;
+}
+.head {
+  display: flex;
+  width: 89%;
+  margin: auto;
+  background-color: white;
+  margin-top: 50rpx;
+  height: 250rpx;
+  border-radius: 15px;
+  align-items: center;
+}
+.head .head_hd {
+  width: 140rpx;
+  margin-left: 40rpx;
+  border-radius: 10px;
+}
+.head .head_box {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40rpx;
+}
+.head .head_box .head_box_text1 {
+  font-family: "黑体", SimSun, "Arial", sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+}
+.head .head_box .head_box_text2 {
+  margin-top: 15rpx;
+  font-size: 11px;
+  color: #696969;
+}
+.body {
+  margin: auto;
+  margin-top: 50rpx;
+  padding: 25rpx;
+  padding-left: 55rpx;
+  padding-right: 55rpx;
+  padding-top: 40rpx;
+  border-radius: 15px;
+  width: 89%;
+  box-sizing: border-box;
+  background-color: white;
+}
+.body .body-geRenXinXi {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx;
+  border-bottom: 2px solid #F8F8FA;
+  height: 80rpx;
+  align-items: center;
+  margin-bottom: 25rpx;
+}
+.body .body-geRenXinXi .body-geRenXinXi-rightbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body .body-geRenXinXi .body-geRenXinXi-rightbox .body-geRenXinXi-text {
+  font-size: 18px;
+  margin-left: 20rpx;
+  font-family: "黑体", SimSun, "Arial", sans-serif;
+}
+.body .body-geRenXinXi .body-geRenXinXi-rightbox .body_pic {
+  width: 60rpx;
+}
+.getnickbox {
+  padding: 30rpx 60rpx;
+  background-color: white;
+  border-radius: 20px 20px 0 0;
+}
+.getnickbox .logoimg {
+  width: 50rpx;
+  height: 50rpx;
+}
+.getnickbox .name {
+  margin-left: 20rpx;
+}
+.getnickbox .name text {
+  margin-left: 10rpx;
+}
+.getnickbox .m1 {
+  font-weight: 500;
+}
+.getnickbox .m2 {
+  padding-bottom: 30rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+  color: #999;
+  padding-top: 10rpx;
+  font-size: 24rpx;
+}
+.getnickbox .xin1 {
+  border-bottom: 1rpx solid #f2f2f2;
+  margin-bottom: 30rpx;
+}
+.getnickbox .xin1 .toubox {
+  padding: 10rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.getnickbox .xin1 .toubox .t1 {
+  font-size: 28rpx;
+  margin-right: 30rpx;
+}
+.getnickbox .xin1 .toubox .avatarbox {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 20rpx;
+}
+.getnickbox .xin1 .toubox .avatarimg {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 20rpx;
+}
+.getnickbox .buttoncss {
+  background-color: #fff;
+  border-radius: 0px;
+  border: 0rpx solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.getnickbox button::after {
+  border: 0px solid rgba(0, 0, 0, 0.2);
+}
+.getnickbox .nick {
+  padding-bottom: 30rpx;
+  border-bottom: 2rpx solid #f2f2f2;
+  display: flex;
+  align-items: center;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+.getnickbox .nick .n1 {
+  font-size: 28rpx;
+  margin-right: 30rpx;
+}
+.getnickbox .wan {
+  position: relative;
+  height: 100rpx;
+  box-shadow: 0rpx 0rpx 0rpx 0rpx;
+  margin-top: 30rpx;
+}
+.getnickbox .mt30 {
+  margin-top: 30rpx;
+}
+.flex_align_center {
+  display: flex;
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
+}
+.confirm {
+  display: flex;
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
+  background-color: #ADD8E6;
+  width: 90%;
+  border-radius: 30px;
+  box-sizing: border-box;
+  height: 100rpx;
+  margin: auto;
+  margin-top: 30rpx;
+}
+.confirm .confirm-text {
+  color: white;
+}
+

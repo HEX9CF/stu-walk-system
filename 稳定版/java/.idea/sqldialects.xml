@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/main/java/mapper/ChatMapper.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mapper/ChildrenMapper.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mapper/GoodsDetailMapper.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mapper/GoodsMapper.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mapper/SecondChatMapper.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mapper/TjGoodsMapper.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mapper/UserMapper.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mapper/UserStoreMapper.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mapper/WxChatMapper.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mapper/WxSecondChatMapper.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mapper/WxUsersMapper.java" dialect="GenericSQL" />
+  </component>
+</project>
